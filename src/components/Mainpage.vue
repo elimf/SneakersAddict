@@ -23,23 +23,6 @@
                     </div>
                 </header>
             </div>
-            <!-- Search form -->
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-10">
-                        <input
-                            class="form-control w-100"
-                            type="text"
-                            placeholder="Recherche"
-                        />
-                    </div>
-                    <div class="col-2">
-                        <button class="btn btn-dark btn-rounded" type="submit">
-                            Envoyer
-                        </button>
-                    </div>
-                </div>
-            </div>
             <!-- Services-->
             <div class="col-12 my-3" id="services">
                 <div class="row text-center">

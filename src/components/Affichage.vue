@@ -13,85 +13,24 @@
                 v-for="elements in sneakers.slice(2, 5)"
                 :key="elements.id"
             >
-                <!-- Portfolio item 1-->
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img
-                                v-bind:src="elements.grid_picture_url"
-                                v-bind:alt="elements.id"
-                                style="width: 100%; height: 100%"
-                            />
-                            <div class="superelement">
-                                {{ elements.name }}
-                                <p>{{ elements.retail_price_cents / 100 }}$</p>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <h1 class="display-5 text-uppercase">
-                                {{ elements.silhouette }}
-                            </h1>
-                            <div
-                                style="
-                                    font-size: 12px;
-                                    font-style: italic;
-                                    color: black;
-                                "
-                            >
-                                <span class="correct">PRICE</span>
-                                :
-                                {{ elements.retail_price_cents / 100 }}$
-                                <br />
-                                <span class="correct">Brand</span>
-                                :
-                                {{ elements.brand_name }}
-                                <br />
-                                <span class="correct">Color</span>
-                                :
-                                {{ elements.color }}
-                                <br />
-                                <span class="correct">Etat</span>
-                                :
-                                {{ elements.shoe_condition }}
-                                <br />
-                                <a v-if="elements.story_html">
-                                    <span class="correct">Story :</span>
-                                    {{ elements.story_html }}</a
-                                >
-                                <br />
-                                <span class="correct">Designer</span>
-                                :
-                                {{ elements.designer }}
-                                <br />
-                                <span v-if="elements.has_stock" class="correct">
-                                    in stock
-                                    <img
-                                        style="width: 7%"
-                                        src="../assets/img/validation.png"
-                                /></span>
-                                <span v-else>
-                                    not in stock
-                                    <img
-                                        style="width: 5%"
-                                        src="../assets/img/Cross_red_circle.png"
-                                /></span>
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container" style="margin-top: 80px">
-                    <div class="row justify-content-around">
-                        <div class=" mb-5">
-                            <button
-                                v-on:click="say(elements.name)"
-                                class="Mysuperbutton"
-                            >
-                                Ajouter Au Panier
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <div class="container">
+            <div class="card">
+              <div class="image">
+                <img
+                  v-bind:src="elements.grid_picture_url"
+                  v-bind:alt="elements.id"
+                />
+              </div>
+              <div class="content">
+                <h2>{{ elements.name }}</h2>
+                <p style="color: white; font-size: 2rem">
+                  {{ elements.retail_price_cents / 100 }}$
+                </p>
+                
+              </div>
+            </div>
+          </div>
+                
             </div>
         </div>
     </div>
@@ -121,88 +60,198 @@ export default {
 };
 </script>
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-.superelement {
-    background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
-}
-.flip-card {
-    background: linear-gradient(
-        90deg,
-        rgba(131, 58, 180, 1) 0%,
-        rgba(253, 29, 29, 1) 50%,
-        rgba(252, 176, 69, 1) 100%
-    );
-    width: 400px;
-    height: 400px;
-    perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #413f42;
 }
 
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 110%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+.container {
+  position: relative;
 }
 
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
+.container .card {
+  position: relative;
+  height: 450px;
+  width: 320px;
+  background: #232323;
+  border-radius: 8%;
+  overflow: hidden;
 }
 
-.flip-card-front,
-.flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+.container .card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #eee3cb;
+  clip-path: circle(150px at 80% 20%);
+  transition: 0.5s ease-in-out;
 }
 
-.flip-card-front {
-    color: black;
-    height: fit-content;
+.container .card:hover::before {
+  clip-path: circle(300px at 80% -20%);
 }
 
-.flip-card-back {
-    background: radial-gradient(
-        circle,
-        rgba(238, 174, 202, 1) 0%,
-        rgba(148, 187, 233, 1) 100%
-    );
-    color: white;
-    transform: rotateY(180deg);
+.container .card::after {
+  content: "Sneakers Addict";
+  position: absolute;
+  top: 30%;
+  font-size: 5em;
+  font-weight: 200;
+  font-style: italic;
+  color: rgb(255 255 255 / 22%);
 }
 
-.THE_best_sellers {
-    display: flex;
-    flex-direction: row;
+.container .card .image {
+  position: absolute;
+  top: 50%;
+  left: -13px;
+  transform: translateY(-50%) rotateY(180deg);
+  z-index: 10000;
+  width: 100%;
+  height: 200px;
+  transition: 0.5s;
 }
-.Mysuperbutton {
-    box-shadow: 0px 1px 0px 0px #fff6af;
-    background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
-    background-color: #ffec64;
-    border-radius: 6px;
-    border: 1px solid #ffaa22;
-    display: inline-block;
-    cursor: pointer;
-    color: #333333;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 6px 24px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #ffee66;
+
+.container .card:hover .image {
+  top: 0%;
+  transform: translateY(0%) rotateY(180deg);
 }
-.Mysuperbutton:hover {
-    background: linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
-    background-color: #ffab23;
+
+.container .card .image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(25deg);
+  width: 270px;
 }
-.Mysuperbutton:active {
-    position: relative;
-    top: 1px;
+
+.container .card .content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  transition: 1s;
+  z-index: 10;
+}
+
+.container .card:hover .content {
+  height: 250px;
+}
+
+.container .card .content h2 {
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.container .card .content .size,
+.container .card .content .color {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: 8px 20px;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  flex-wrap: wrap;
+  align-content: center;
+  flex-direction: row;
+}
+
+.container .card:hover .content .size {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.5s;
+}
+.container .card:hover .content .color {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.6s;
+}
+
+.container .card .content .size h3,
+.container .card .content .color h3 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: 10px;
+}
+
+.container .card .content .size span {
+  height: 2em;
+  width: 100%;
+  text-align: center;
+  line-height: 26px;
+  font-size: 14px;
+  display: inline-block;
+  color: #111;
+  background: #fff;
+  margin: 0 5px;
+  transition: 0.5s;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container .card .content .size span:hover {
+  background-color: #eee3cb;
+}
+
+.container .card .content .color span {
+  width: 20px;
+  height: 20px;
+  background: #ff0;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.container .card .content .color span:nth-child(2) {
+  background: #eee3cb;
+}
+
+.container .card .content .color span:nth-child(3) {
+  background: #d63c49;
+}
+
+.container .card .content .color span:nth-child(4) {
+  background: #366ae8;
+}
+
+.container .card .content a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #111;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 0.5s;
+}
+
+.container .card:hover .content a {
+  opacity: 1;
+  transform: translateY(0px);
+  transition-delay: 0.75s;
+  background: #eee3cb;
 }
 </style>

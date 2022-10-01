@@ -5,7 +5,6 @@
                 <div class="">
                     <Mainpage />
                     <Affichage />
-                    <Apropos />
                     <Footer />
                 </div>
             </div>
