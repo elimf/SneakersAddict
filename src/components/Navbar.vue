@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
-    <a class="navbar-brand">Sneakers Addict</a>
+    <a class="navbar-brand"><router-link to="/" class="nav-link" active-class="router-link-exact-active">Sneakers Addict</router-link></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -16,13 +16,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <router-link to="/" class="nav-link" active-class="router-link-exact-active">Home</router-link>
+          <router-link to="/store" class="nav-link" active-class="router-link-exact-active">Store</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/apropos" class="nav-link" active-class="router-link-exact-active">A Propos</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/store" class="nav-link" active-class="router-link-exact-active">Store</router-link>
         </li>
       </ul>
       <div class="d-flex align-items-center">
