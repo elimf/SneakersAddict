@@ -1,18 +1,18 @@
 <template >
     <div id="storebody">
-        <Test />
+        <Display :showTrends="false" />
         <Footer />
     </div>
 </template>
 <script>
 // @ is an alias to /src
-import Test from "../components/Test.vue";
+import Display from "../components/Display.vue";
 import Footer from "../components/Footer.vue";
 
 export default {
     name: "Store",
     components: {
-        Test,
+        Display,
         Footer,
     },
 };

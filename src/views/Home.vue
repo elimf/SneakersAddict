@@ -4,7 +4,7 @@
             <div class="col-12 ">
                 <div class="">
                     <Mainpage />
-                    <Affichage />
+                    <Display :showTrends="true" />
                     <Footer />
                 </div>
             </div>
@@ -16,7 +16,7 @@
 // @ is an alias to /src
 import Mainpage from "@/components/Mainpage.vue";
 import Footer from "../components/Footer.vue";
-import Affichage from "../components/Affichage.vue";
+import Display from "../components/Display.vue";
 import Apropos from "../components/Apropos.vue";
 
 export default {
@@ -25,7 +25,7 @@ export default {
         Mainpage,
         Footer,
         Apropos,
-        Affichage,
+        Display,
     },
 };
 </script>
